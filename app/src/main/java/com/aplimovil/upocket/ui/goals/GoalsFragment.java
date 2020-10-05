@@ -1,4 +1,4 @@
-package com.aplimovil.upocket.ui.account;
+package com.aplimovil.upocket.ui.goals;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,14 +11,15 @@ import androidx.fragment.app.Fragment;
 
 import com.aplimovil.upocket.R;
 
-public class AccountFragment extends Fragment {
+public class GoalsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_account, container, false);
-        final TextView textView = root.findViewById(R.id.text_account);
-        textView.setText(R.string.title_account);
+        View root = inflater.inflate(R.layout.fragment_goals, container, false);
+        final TextView textView = root.findViewById(R.id.text_notifications);
+        textView.setText(R.string.title_goals);
+
         return root;
     }
 }
