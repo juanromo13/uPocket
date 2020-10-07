@@ -8,10 +8,12 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+import com.aplimovil.upocket.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
