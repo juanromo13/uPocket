@@ -15,12 +15,23 @@ public class Goal {
         return meta;
     }
 
+    public void setMeta(String meta) {
+        this.meta = meta;
+    }
+
     public String getPrecio() {
         return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
     }
 
     public String getRestante() {
         return restante;
     }
 
+    public void setRestante(String restante) {
+        this.restante = restante;
+    }
 }
