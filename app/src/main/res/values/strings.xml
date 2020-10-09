@@ -4,4 +4,6 @@
     <string name="title_activity">Activity</string>
     <string name="title_goals">Goals</string>
     <string name="title_account">Account</string>
+    <string name="add_new">add new</string>
+    <string name="remove">delete</string>
 </resources>
