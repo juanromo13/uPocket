@@ -8,4 +8,5 @@
         android:numericShortcut="0"
         android:title="@string/add_new"
         app:showAsAction="ifRoom" />
+
 </menu>
