@@ -7,5 +7,5 @@
         android:icon="@drawable/ic_baseline_add_24"
         android:numericShortcut="0"
         android:title="@string/add_new"
-        app:showAsAction="always"></item>
+        app:showAsAction="always" />
 </menu>
