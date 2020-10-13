@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="current_bal">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#012840</item>
+    </style>
+
 </resources>

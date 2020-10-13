@@ -23,8 +23,8 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TextView textView = root.findViewById(R.id.text_home);
-        textView.setText(R.string.title_home);
+//        TextView textView = root.findViewById(R.id.text_home);
+//        textView.setText(R.string.title_home);
 
         return root;
     }
