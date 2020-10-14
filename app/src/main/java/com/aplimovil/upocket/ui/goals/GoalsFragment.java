@@ -1,5 +1,6 @@
 package com.aplimovil.upocket.ui.goals;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aplimovil.upocket.Goal;
 import com.aplimovil.upocket.GoalAdapter;
+import com.aplimovil.upocket.MainActivity;
 import com.aplimovil.upocket.R;
+import com.aplimovil.upocket.RegisterGoalActivity;
 
 import java.util.ArrayList;
 
@@ -63,7 +66,8 @@ public class GoalsFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.addItem) {
-            Toast.makeText(getActivity(), "hola", Toast.LENGTH_SHORT).show();
+            Intent registerIntent = new Intent(getContext(), RegisterGoalActivity.class);
+            startActivity(registerIntent);
         }
         return super.onOptionsItemSelected(item);
     }

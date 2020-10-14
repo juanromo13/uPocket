@@ -23,11 +23,11 @@
         <TextView
             android:id="@+id/current"
             android:layout_width="158dp"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal|top"
-            android:text="Current balance"
+            android:text="@string/title_current_balance"
             android:textAppearance="@style/current_bal" />
 
     </androidx.cardview.widget.CardView>
@@ -46,11 +46,11 @@
         <TextView
             android:id="@+id/balance"
             android:layout_width="158dp"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal|top"
-            android:text="Current balance"
+            android:text="@string/title_home_today"
             android:textAppearance="@style/current_bal" />
 
     </androidx.cardview.widget.CardView>
@@ -70,23 +70,24 @@
         <TextView
             android:id="@+id/reminders"
             android:layout_width="158dp"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal|top"
-            android:text="Current balance"
+            android:text="@string/title_reminders"
             android:textAppearance="@style/current_bal" />
 
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/new_movement_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
         android:background="@color/colorAccent"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="NEW MOVEMENT"
+        android:text="@string/add_new"
         android:textColor="@android:color/white" />
 
 

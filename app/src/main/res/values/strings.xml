@@ -4,7 +4,7 @@
     <string name="title_activity">Activity</string>
     <string name="title_goals">Goals</string>
     <string name="title_account">Account</string>
-    <string name="add_new">add new</string>
+    <string name="add_new">NEW MOVEMENT</string>
     <string name="remove">delete</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -32,4 +32,5 @@
     <string name="input_new_item">New Item</string>
     <string name="input_price">Price</string>
     <string name="logout">Log Out</string>
+    <string name="title_movement">Movement</string>
 </resources>
