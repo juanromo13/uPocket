@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">uPocket</string>
+    <string name="title_home">Principal</string>
+    <string name="title_activity">Actividad</string>
+    <string name="title_goals">Deseos</string>
+    <string name="title_account">Cuenta</string>
+    <string name="add_new">Agregar</string>
+    <string name="remove">Borrar</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrate</string>
+    <string name="forgot_password">Olvidaste tu contraseña?</string>
+    <string name="input_email">Correo Electrónico</string>
+    <string name="input_password">Contraseña</string>
+    <string name="input_name">Nombre</string>
+    <string name="input_new_password">Nueva Contraseña</string>
+    <string name="input_repeat_password">Repite Contraseña</string>
+    <string name="title_current_balance">Saldo Actual</string>
+    <string name="title_home_today">Hoy</string>
+    <string name="title_reminders">Recordatorios</string>
+    <string name="input_type">Tipo</string>
+    <string name="input_value">Valor</string>
+    <string name="check_frequently_bligation">¿Obligación frecuente?</string>
+    <string name="create">Crear</string>
+    <string name="input_date">Fecha</string>
+    <string name="input_frequency">Frecuencia</string>
+    <string name="title_activity_weekly">Semanal</string>
+    <string name="title_activity_daily">Diario</string>
+    <string name="text_current">Saldo</string>
+    <string name="text_price">Precio</string>
+    <string name="text_left">Restante</string>
+    <string name="title_add_new_goal">Agregar un Nuevo Deseo</string>
+    <string name="input_new_item">Nuevo Elemento</string>
+    <string name="input_price">Precio</string>
+    <string name="logout">Cerrar Sesión</string>
+</resources>
