@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         tools:text="Hey! Juan"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:text="@string/input_name"
+        android:hint="@string/input_name"
         />
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/input_email"
+        android:hint="@string/input_email"
         />
 
 
@@ -62,7 +62,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/input_date"
+        android:hint="@string/input_date"
         />
 
     <Button
@@ -72,19 +72,20 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/logout"
         android:textColor="@android:color/black"
+        android:background="?android:attr/windowBackground"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_baseline_power_settings_new_24"
+        android:drawableStart="@drawable/ic_baseline_power_settings_new_24"
         />
 
     <Button
         android:id="@+id/img_copyright"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:drawableStart="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="#FFFFFF"
         android:text="@string/app_name"
         android:textColor="@android:color/black"
