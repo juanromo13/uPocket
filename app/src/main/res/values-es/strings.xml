@@ -33,4 +33,8 @@
     <string name="input_price">Precio</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="title_movement">Movimiento</string>
+    <string name="incomes">Ingresos</string>
+    <string name="outcomes">Egresos</string>
+    <string name="visibility">Visivilidad</string>
+    <string name="demo50">$ 50000.00</string>
 </resources>

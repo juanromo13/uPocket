@@ -39,10 +39,10 @@ public class GoalsFragment extends Fragment {
         recyclerGoals = root.findViewById(R.id.recycler_view_goal_item);
         recyclerGoals.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
+        listaMetas.add(new Goal("Pantalla", 40, 10));
+        listaMetas.add(new Goal("Pantalla", 40, 10));
+        listaMetas.add(new Goal("Pantalla", 40, 10));
+        listaMetas.add(new Goal("Pantalla", 40, 10));
 
         GoalAdapter adapter = new GoalAdapter(listaMetas);
         recyclerGoals.setAdapter(adapter);

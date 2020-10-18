@@ -5,6 +5,7 @@
     <string name="title_goals">Goals</string>
     <string name="title_account">Account</string>
     <string name="add_new">NEW MOVEMENT</string>
+    <string name="incomes">Incomes</string>
     <string name="remove">delete</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -33,4 +34,7 @@
     <string name="input_price">Price</string>
     <string name="logout">Log Out</string>
     <string name="title_movement">Movement</string>
+    <string name="outcomes">Outcomes</string>
+    <string name="visibility">Visibility</string>
+    <string name="demo50">$ 50000.00</string>
 </resources>
