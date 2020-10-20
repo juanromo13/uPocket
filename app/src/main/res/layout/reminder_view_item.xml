@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:text="Reminder"
         android:textSize="20sp"
-        android:layout_marginLeft="32dp"
         android:textFontWeight="300"
         android:textColor="#012840"
         android:letterSpacing="-0.05" />
@@ -23,7 +22,6 @@
         android:layout_alignParentEnd="true"
         android:textSize="20sp"
         android:textFontWeight="500"
-        android:layout_marginRight="32dp"
         android:textColor="#012840"
         android:letterSpacing="-0.05" />
 

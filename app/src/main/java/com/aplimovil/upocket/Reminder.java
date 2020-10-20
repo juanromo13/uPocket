@@ -2,9 +2,9 @@ package com.aplimovil.upocket;
 
 public class Reminder {
     private String recordatorio;
-    private int valorRecordatorio;
+    private String valorRecordatorio;
 
-    public Reminder(String recordatorio, int valorRecordatorio) {
+    public Reminder(String recordatorio, String valorRecordatorio) {
         this.recordatorio = recordatorio;
         this.valorRecordatorio = valorRecordatorio;
     }
@@ -17,11 +17,11 @@ public class Reminder {
         this.recordatorio = recordatorio;
     }
 
-    public int getValorRecordatorio() {
+    public String  getValorRecordatorio() {
         return valorRecordatorio;
     }
 
-    public void setValorRecordatorio(int valorRecordatorio) {
+    public void setValorRecordatorio(String valorRecordatorio) {
         this.valorRecordatorio = valorRecordatorio;
     }
 }

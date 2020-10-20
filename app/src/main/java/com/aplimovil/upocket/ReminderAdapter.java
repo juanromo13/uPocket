@@ -32,7 +32,7 @@ public class ReminderAdapter extends ArrayAdapter<Reminder> {
         recordatorio.setText(currentReminder.getRecordatorio());
 
         TextView valor = listReminderView.findViewById(R.id.valor_recordatorio_TextView);
-        valor.setText(Integer.toString(currentReminder.getValorRecordatorio()));
+        valor.setText(currentReminder.getValorRecordatorio());
 
         return listReminderView;
     }
