@@ -45,6 +45,7 @@ public class GoalsFragment extends Fragment {
         recyclerGoals = root.findViewById(R.id.recycler_view_goal_item);
         recyclerGoals.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         conn = new ConexionSQLiteOpenHelper(getContext());
 
         Consultar();
