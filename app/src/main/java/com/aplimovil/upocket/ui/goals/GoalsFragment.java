@@ -62,7 +62,7 @@ public class GoalsFragment extends Fragment {
         try {
             Cursor cursor = db.query(UtilityGoal.TABLA_GOALS, campos, null, null, null, null, null);
             while(cursor.moveToNext()) {
-                listaMetas.add(new Goal(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1))), 10));
+                listaMetas.add(new Goal(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1))), NumberFormat.getCurrencyInstance().format(10)));
             }
         }
         catch (Exception e){

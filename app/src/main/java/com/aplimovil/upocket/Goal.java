@@ -3,9 +3,9 @@ package com.aplimovil.upocket;
 public class Goal {
     private String meta;
     private String precio;
-    private int restante;
+    private String restante;
 
-    public Goal(String deseo, String precio, int restante) {
+    public Goal(String deseo, String precio, String restante) {
         this.meta = deseo;
         this.precio = precio;
         this.restante = restante;
@@ -27,11 +27,11 @@ public class Goal {
         this.precio = precio;
     }
 
-    public int getRestante() {
+    public String getRestante() {
         return restante;
     }
 
-    public void setRestante(int restante) {
+    public void setRestante(String restante) {
         this.restante = restante;
     }
 }
