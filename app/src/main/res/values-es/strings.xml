@@ -28,7 +28,7 @@
     <string name="text_current">Saldo</string>
     <string name="text_price">Precio</string>
     <string name="text_left">Restante</string>
-    <string name="title_add_new_goal">Agregar un Nuevo Deseo</string>
+    <string name="title_add_new_goal">Crear Nueva Meta</string>
     <string name="input_new_item">Nuevo Elemento</string>
     <string name="input_price">Precio</string>
     <string name="logout">Cerrar Sesión</string>

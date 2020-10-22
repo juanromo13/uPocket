@@ -1,6 +1,8 @@
 package com.aplimovil.upocket.ui.goals;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,30 +26,53 @@ import com.aplimovil.upocket.RegisterGoalActivity;
 
 import java.util.ArrayList;
 
+import BD.ConexionSQLiteOpenHelper;
+import utilities.UtilityGoal;
+
 
 public class GoalsFragment extends Fragment {
 
-    ArrayList<Goal> listaMetas;
+    ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
+    ConexionSQLiteOpenHelper conn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_goals, container, false);
 
 
-        listaMetas = new ArrayList<>();
+
         recyclerGoals = root.findViewById(R.id.recycler_view_goal_item);
         recyclerGoals.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
-        listaMetas.add(new Goal("Pantalla", "40", "10"));
+        conn = new ConexionSQLiteOpenHelper(getContext());
 
+        Consultar();
         GoalAdapter adapter = new GoalAdapter(listaMetas);
         recyclerGoals.setAdapter(adapter);
 
         return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Toast.makeText(getContext(), "prueba real", Toast.LENGTH_SHORT).show();
+    }
+
+    private void Consultar(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String[] campos = {UtilityGoal.META , UtilityGoal.PRECIO};
+        try {
+            Cursor cursor = db.query(UtilityGoal.TABLA_GOALS, campos, null, null, null, null, null);
+            while(cursor.moveToNext()) {
+                listaMetas.add(new Goal(cursor.getString(0), cursor.getString(1), "10"));
+            }
+        }
+        catch (Exception e){
+            Toast.makeText(getContext(), "El identificador no existe", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     @Override
