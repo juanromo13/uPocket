@@ -21,41 +21,41 @@
         android:textAppearance="@style/new_goal" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/meta"
         android:layout_width="wrap_content"
         android:layout_height="57dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/input_new_item"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        android:hint="@string/input_new_item"
+        app:layout_constraintBottom_toTopOf="@+id/precio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.837" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/precio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/input_price"
+        android:inputType="numberDecimal"
+        android:hint="@string/input_price"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="101dp" />
 
     <Button
-        android:id="@+id/new_movement_button"
+        android:id="@+id/new_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
         android:background="@color/colorAccent"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/add_new"
-        android:textColor="@android:color/white" />
+        android:text="@string/create"
+        android:textColor="@android:color/white"/>
 
 
     <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
