@@ -29,7 +29,7 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolderMeta
     public void onBindViewHolder(@NonNull ViewHolderMeta holder, int position) {
         holder.meta.setText(listaMetas.get(position).getMeta());
         holder.restante.setText(Integer.toString(listaMetas.get(position).getRestante()));
-        holder.precio.setText(Integer.toString(listaMetas.get(position).getPrecio()));
+        holder.precio.setText(listaMetas.get(position).getPrecio());
     }
 
     @Override

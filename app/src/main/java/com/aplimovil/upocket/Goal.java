@@ -2,10 +2,10 @@ package com.aplimovil.upocket;
 
 public class Goal {
     private String meta;
-    private int precio;
+    private String precio;
     private int restante;
 
-    public Goal(String deseo, int precio, int restante) {
+    public Goal(String deseo, String precio, int restante) {
         this.meta = deseo;
         this.precio = precio;
         this.restante = restante;
@@ -19,11 +19,11 @@ public class Goal {
         this.meta = meta;
     }
 
-    public int getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 

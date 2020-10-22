@@ -24,6 +24,7 @@ import com.aplimovil.upocket.MainActivity;
 import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterGoalActivity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import BD.ConexionSQLiteOpenHelper;
@@ -55,23 +56,17 @@ public class GoalsFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getContext(), "prueba real", Toast.LENGTH_SHORT).show();
-    }
-
     private void Consultar(){
         SQLiteDatabase db = conn.getReadableDatabase();
         String[] campos = {UtilityGoal.META , UtilityGoal.PRECIO};
         try {
             Cursor cursor = db.query(UtilityGoal.TABLA_GOALS, campos, null, null, null, null, null);
             while(cursor.moveToNext()) {
-                listaMetas.add(new Goal(cursor.getString(0), cursor.getString(1), "10"));
+                listaMetas.add(new Goal(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1))), 10));
             }
         }
         catch (Exception e){
-            Toast.makeText(getContext(), "El identificador no existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "No hay metas.", Toast.LENGTH_SHORT).show();
 
         }
     }
