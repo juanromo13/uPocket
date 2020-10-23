@@ -37,4 +37,6 @@
     <string name="outcomes">Egresos</string>
     <string name="visibility">Visivilidad</string>
     <string name="demo50">$ 50000.00</string>
+    <string name="photo_profile">Foto de Perfil</string>
+    <string name="hint_heyjuan">Hola! Juan.</string>
 </resources>
