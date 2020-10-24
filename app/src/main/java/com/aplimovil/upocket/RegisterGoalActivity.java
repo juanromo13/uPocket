@@ -63,9 +63,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent prueba = new Intent(RegisterGoalActivity.this, MainActivity.class);
-                startActivity(prueba);
-                //finish()
+                finish();
             break;
         }
         return true;
