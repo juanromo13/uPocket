@@ -6,7 +6,7 @@
     tools:context=".RegisterGoalActivity">
 
     <TextView
-        android:id="@+id/current"
+        android:id="@+id/titulo_movement"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -16,31 +16,30 @@
         android:text="@string/title_add_new_movement"
         android:textAppearance="@style/new_goal" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/tipo"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_above="@+id/nombre"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:layout_marginEnd="32dp"-->
-<!--        android:layout_marginBottom="4dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="@string/input_type"-->
-<!--        android:inputType="textPersonName" />-->
+    <EditText
+        android:id="@+id/tipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titulo_movement"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/input_type"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/precio"
+        android:layout_below="@id/tipo"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/name_movement"
         android:inputType="textPersonName" />
@@ -49,12 +48,44 @@
         android:id="@+id/precio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/checkbox_obligation"
+        android:layout_below="@id/nombre"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="35dp"
         android:ems="10"
         android:hint="@string/input_price"
+        android:inputType="numberDecimal" />
+
+
+    <CheckBox
+        android:id="@+id/checkbox_obligation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/fecha"
+        android:layout_centerHorizontal="true"
+        android:text="Frequently Obligation" />
+
+    <EditText
+        android:id="@+id/fecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/frecuencia"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/input_date"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/frecuencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/new_goal_button"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:hint="@string/input_frequency"
         android:inputType="numberDecimal" />
 
     <Button
@@ -69,41 +100,6 @@
         android:paddingRight="50dp"
         android:text="@string/create"
         android:textColor="@android:color/white" />
-
-
-    <CheckBox
-        android:id="@+id/checkbox_obligation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/new_goal_button"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="234dp"
-        android:text="Frequently Obligation" />
-
-    <EditText
-        android:id="@+id/fecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/frecuencia"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="50dp"
-        android:ems="10"
-        android:hint="@string/input_date"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:id="@+id/frecuencia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/checkbox_obligation"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="-198dp"
-        android:ems="10"
-        android:hint="@string/input_frequency"
-        android:inputType="numberDecimal" />
 
 
 </RelativeLayout>

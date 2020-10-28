@@ -34,7 +34,7 @@
 
 
 
-<EditText
+<TextView
         android:id="@+id/input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:hint="@string/input_name"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_below="@id/input_name"
@@ -56,8 +56,7 @@
         />
 
 
-    <EditText
-        android:id="@+id/input_birthday"
+    <TextView
         android:layout_width="match_parent"
         android:layout_below="@id/input_email"
         android:layout_height="wrap_content"
@@ -68,7 +67,6 @@
         />
 
     <Button
-        android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

@@ -10,7 +10,6 @@
     tools:context=".ui.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/contenedor_current"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
@@ -21,7 +20,6 @@
         app:cardElevation="3dp">
 
         <TextView
-            android:id="@+id/current_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -54,7 +52,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/contenedor_balance"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
@@ -65,7 +62,6 @@
         app:cardElevation="3dp">
 
         <TextView
-            android:id="@+id/day_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -133,7 +129,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/contenedor_reminders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
@@ -150,7 +145,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/reminders"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
