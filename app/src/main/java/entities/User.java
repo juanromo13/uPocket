@@ -1,4 +1,4 @@
 package entities;
 
-public class user {
+public class User {
 }

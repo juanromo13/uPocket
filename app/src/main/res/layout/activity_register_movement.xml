@@ -45,7 +45,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/precio"
+        android:id="@+id/precioMovement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nombre"
@@ -80,7 +80,7 @@
         android:id="@+id/frecuencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/new_goal_button"
+        android:layout_above="@id/new_movement_button"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="52dp"
@@ -89,7 +89,7 @@
         android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/new_goal_button"
+        android:id="@+id/new_movement_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

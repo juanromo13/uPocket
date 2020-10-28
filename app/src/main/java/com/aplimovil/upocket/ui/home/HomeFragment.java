@@ -23,6 +23,8 @@ import com.aplimovil.upocket.ReminderAdapter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
+import BD.ConexionSQLiteOpenHelper;
+
 public class HomeFragment extends Fragment {
 
     private Button newMovement;
@@ -32,13 +34,14 @@ public class HomeFragment extends Fragment {
     private TextView outcomes;
     private boolean esVisible = true;
 
-    public HomeFragment() {
-
-    }
+    ConexionSQLiteOpenHelper conn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        // Conexion SQlite
+        conn = new ConexionSQLiteOpenHelper(getContext());
 
         balance = root.findViewById(R.id.balance_TextView);
         incomes = root.findViewById(R.id.incomes_value);

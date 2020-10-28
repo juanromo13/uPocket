@@ -39,7 +39,6 @@ public class GoalsFragment extends Fragment {
     ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
     ConexionSQLiteOpenHelper conn;
-    SwipeRefreshLayout swipeRefreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

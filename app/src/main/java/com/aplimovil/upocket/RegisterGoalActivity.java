@@ -29,7 +29,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         meta = findViewById(R.id.meta);
-        precio = findViewById(R.id.precio);
+        precio = findViewById(R.id.precioGoal);
         crear = findViewById(R.id.new_goal_button);
 
         crear.setOnClickListener(new View.OnClickListener() {
@@ -41,9 +41,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
     }
 
     private void registrarGoal() {
-
         ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper(this);
-//        ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper();
         SQLiteDatabase db = conn.getWritableDatabase();
 
         ContentValues values = new ContentValues();
