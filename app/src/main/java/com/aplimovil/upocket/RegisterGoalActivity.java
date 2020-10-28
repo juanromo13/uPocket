@@ -1,11 +1,6 @@
 package com.aplimovil.upocket;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import BD.ConexionSQLiteOpenHelper;
 import utilities.UtilityGoal;
@@ -52,7 +50,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
         values.put(UtilityGoal.PRECIO, Integer.parseInt(precio.getText().toString()));
 
         Long idResultante = db.insert(UtilityGoal.TABLA_GOALS, UtilityGoal.ID, values);
-        Toast.makeText(this, "Id Registro"+idResultante, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Id Registro" + idResultante, Toast.LENGTH_SHORT).show();
         db.close();
     }
 
@@ -64,7 +62,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-            break;
+                break;
         }
         return true;
     }
