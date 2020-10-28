@@ -43,6 +43,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
     private void registrarGoal() {
 
         ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper(this);
+//        ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper();
         SQLiteDatabase db = conn.getWritableDatabase();
 
         ContentValues values = new ContentValues();

@@ -39,4 +39,6 @@
     <string name="demo50">$ 50000.00</string>
     <string name="photo_profile">Foto de Perfil</string>
     <string name="hint_heyjuan">Hola! Juan.</string>
+    <string name="name_movement">Nombre</string>
+    <string name="title_add_new_movement">Crear Nueva Movimiento</string>
 </resources>
