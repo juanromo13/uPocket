@@ -1,10 +1,8 @@
 package com.aplimovil.upocket;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,19 +10,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import BD.ConexionSQLiteOpenHelper;
-import utilities.UtilityGoal;
 import utilities.UtilityMovement;
 
 public class RegisterMovementActivity extends AppCompatActivity {
@@ -32,7 +25,7 @@ public class RegisterMovementActivity extends AppCompatActivity {
     CheckBox frequently;
     EditText tipo, nombre, precio, frecuencia, fecha;
     Button crear, boton_fecha;
-    private int dia,mes,anio;
+    private int dia, mes, anio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +44,8 @@ public class RegisterMovementActivity extends AppCompatActivity {
         crear = findViewById(R.id.new_movement_button);
         boton_fecha = findViewById(R.id.boton_fecha);
 
+        // Visibilidad
+        boton_fecha.setVisibility(View.INVISIBLE);
         fecha.setVisibility(View.INVISIBLE);
         frecuencia.setVisibility(View.INVISIBLE);
         frequently.setOnClickListener(new View.OnClickListener() {
@@ -58,31 +53,32 @@ public class RegisterMovementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean checked = ((CheckBox) v).isChecked();
                 if (checked == true) {
+                    boton_fecha.setVisibility(View.VISIBLE);
                     fecha.setVisibility(View.VISIBLE);
                     frecuencia.setVisibility(View.VISIBLE);
                 } else {
+                    boton_fecha.setVisibility(View.INVISIBLE);
                     fecha.setVisibility(View.INVISIBLE);
                     frecuencia.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
-        boton_fecha.setOnClickListener(new View.OnClickListener(){
+        boton_fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-                dia = c.get(Calendar.DAY_OF_MONTH);
+                dia = c.get(Calendar.DATE);
                 mes = c.get(Calendar.MONTH);
                 anio = c.get(Calendar.YEAR);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterMovementActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterMovementActivity.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
 
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         fecha.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
-                }
-                        , dia, mes, anio);
+                }, dia, mes, anio);
                 datePickerDialog.show();
             }
         });
@@ -103,8 +99,8 @@ public class RegisterMovementActivity extends AppCompatActivity {
         values.put(UtilityMovement.NAME, nombre.getText().toString());
         values.put(UtilityMovement.PRECIO, Integer.parseInt(precio.getText().toString()));
         values.put(UtilityMovement.TYPE, Integer.parseInt(tipo.getText().toString()));
-        values.put(UtilityMovement.DATE, "");
-        values.put(UtilityMovement.FREQUENCY, "");
+        values.put(UtilityMovement.DATE, fecha.getText().toString());
+        values.put(UtilityMovement.FREQUENCY, frecuencia.getText().toString());
 
         Long idResultante = db.insert(UtilityMovement.TABLA_MOVEMENTS, UtilityMovement.ID, values);
         Toast.makeText(this, "Id Registro" + idResultante, Toast.LENGTH_SHORT).show();

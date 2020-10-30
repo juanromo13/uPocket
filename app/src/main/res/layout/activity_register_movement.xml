@@ -84,7 +84,7 @@
         android:layout_toRightOf="@id/fecha"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="32dp"
-        android:layout_alignBaseline="@id/fecha"
+        android:layout_alignBottom="@id/fecha"
         android:text="Fecha"
         android:textColor="@android:color/white"
         android:background="@color/colorAccent"/>
@@ -99,7 +99,7 @@
         android:layout_marginBottom="52dp"
         android:ems="10"
         android:hint="@string/input_frequency"
-        android:inputType="numberDecimal" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/new_movement_button"
