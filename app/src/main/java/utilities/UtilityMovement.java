@@ -15,6 +15,6 @@ public class UtilityMovement {
             +NAME+ " TEXT NOT NULL, "
             +PRECIO+ " INTEGER NOT NULL, "
             +TYPE+ " INTEGER NOT NULL, "
-            +DATE+ " TEXT, "
+            +DATE+ " DATE, "
             +FREQUENCY+ " TEXT)";
 }
