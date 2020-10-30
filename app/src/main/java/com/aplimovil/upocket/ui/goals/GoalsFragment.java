@@ -26,6 +26,7 @@ import com.aplimovil.upocket.GoalAdapter;
 import com.aplimovil.upocket.MainActivity;
 import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterGoalActivity;
+import com.aplimovil.upocket.ui.home.HomeFragment;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import utilities.UtilityGoal;
 
 public class GoalsFragment extends Fragment {
 
+    HomeFragment hf = new HomeFragment();
     ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
     ConexionSQLiteOpenHelper conn;
@@ -49,14 +51,15 @@ public class GoalsFragment extends Fragment {
 
         conn = new ConexionSQLiteOpenHelper(getContext());
 
-        Consultar();
+        consultar();
+
         GoalAdapter adapter = new GoalAdapter(listaMetas);
         recyclerGoals.setAdapter(adapter);
 
         return root;
     }
 
-    private void Consultar(){
+    private void consultar(){
         SQLiteDatabase db = conn.getReadableDatabase();
         String[] campos = {UtilityGoal.META , UtilityGoal.PRECIO};
         try {

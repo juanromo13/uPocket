@@ -24,4 +24,5 @@
     <string name="name_movement">Nombre</string>
     <string name="title_add_new_movement">Crear Nueva Movimiento</string>
     <string name="input_type">Tipo</string>
+    <string name="valor">Valor</string>
 </resources>
