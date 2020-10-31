@@ -37,7 +37,6 @@ import utilities.UtilityGoal;
 
 public class GoalsFragment extends Fragment {
 
-    HomeFragment hf = new HomeFragment();
     ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
     ConexionSQLiteOpenHelper conn;

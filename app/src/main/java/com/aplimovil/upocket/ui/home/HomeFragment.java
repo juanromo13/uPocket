@@ -33,6 +33,8 @@ import utilities.UtilityMovement;
 
 public class HomeFragment extends Fragment {
 
+    ArrayList<Reminder> reminders = new ArrayList<>();
+    ConexionSQLiteOpenHelper conn;
     private int incom = 0;
     private int outcom = 0;
     private int balan = 0;
@@ -42,8 +44,6 @@ public class HomeFragment extends Fragment {
     private TextView incomes;
     private TextView outcomes;
     private boolean esVisible = true;
-
-    ConexionSQLiteOpenHelper conn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,10 +64,7 @@ public class HomeFragment extends Fragment {
         balance.setText(NumberFormat.getCurrencyInstance().format(balan));
 
         // Llenado de Remainders
-        ArrayList<Reminder> reminders = new ArrayList<>();
-        reminders.add(new Reminder("Energy Bill", NumberFormat.getCurrencyInstance().format(150000)));
-        reminders.add(new Reminder("Water Bill", NumberFormat.getCurrencyInstance().format(150000)));
-        reminders.add(new Reminder("Internet Bill", NumberFormat.getCurrencyInstance().format(150000)));
+        consultarReminders();
 
         // ArrayAdapter of remainders
         ReminderAdapter remindersAdapter = new ReminderAdapter(getActivity(), reminders);
@@ -116,12 +113,11 @@ public class HomeFragment extends Fragment {
         String[] campos = {UtilityMovement.PRECIO};
         try {
             Cursor cursor = db.query(UtilityMovement.TABLA_MOVEMENTS, campos, UtilityMovement.TYPE + "=" + "1", null, null, null, null);
-            while(cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 incom += Integer.parseInt(cursor.getString(0));
             }
             incomes.setText(NumberFormat.getCurrencyInstance().format(incom));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getContext(), "No hay incomes.", Toast.LENGTH_SHORT).show();
 
         }
@@ -132,13 +128,26 @@ public class HomeFragment extends Fragment {
         String[] campos = {UtilityMovement.PRECIO};
         try {
             Cursor cursor = db.query(UtilityMovement.TABLA_MOVEMENTS, campos, UtilityMovement.TYPE + "=" + "0", null, null, null, null);
-            while(cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 outcom += Integer.parseInt(cursor.getString(0));
             }
             outcomes.setText(NumberFormat.getCurrencyInstance().format(outcom));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getContext(), "No hay outcomes.", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void consultarReminders() {
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String[] campos = {UtilityMovement.NAME, UtilityMovement.PRECIO};
+        try {
+            Cursor cursor = db.rawQuery("select name,precio from movements where frequency != \"\"", null);
+            while (cursor.moveToNext()) {
+                reminders.add(new Reminder(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1)))));
+            }
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "No hay recordatorios.", Toast.LENGTH_SHORT).show();
 
         }
     }
