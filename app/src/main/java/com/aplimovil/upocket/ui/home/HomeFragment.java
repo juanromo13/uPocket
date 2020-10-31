@@ -18,26 +18,34 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.aplimovil.upocket.Goal;
 import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterMovementActivity;
 import com.aplimovil.upocket.Reminder;
 import com.aplimovil.upocket.ReminderAdapter;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import BD.ConexionSQLiteOpenHelper;
-import utilities.UtilityGoal;
 import utilities.UtilityMovement;
 
 public class HomeFragment extends Fragment {
 
+    long date = System.currentTimeMillis();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString = sdf.format(date);
+
     ArrayList<Reminder> reminders = new ArrayList<>();
     ConexionSQLiteOpenHelper conn;
     private int incom = 0;
+    private int incomdia = 0;
+    private int incommes = 0;
     private int outcom = 0;
+    private int outcomdia = 0;
+    private int outcommes = 0;
     private int balan = 0;
+    private int periodo = 1; // 0 all, 1 today, 2 mensual.
     private Button newMovement;
     private ImageView hideButton;
     private TextView balance;
@@ -113,13 +121,22 @@ public class HomeFragment extends Fragment {
         String[] campos = {UtilityMovement.PRECIO};
         try {
             Cursor cursor = db.query(UtilityMovement.TABLA_MOVEMENTS, campos, UtilityMovement.TYPE + "=" + "1", null, null, null, null);
+            Cursor cursordia = db.rawQuery("select precio from movements where type = 1 and created_at = CURRENT_DATE", null);
             while (cursor.moveToNext()) {
                 incom += Integer.parseInt(cursor.getString(0));
             }
-            incomes.setText(NumberFormat.getCurrencyInstance().format(incom));
+            while (cursordia.moveToNext()) {
+                incomdia += Integer.parseInt(cursordia.getString(0));
+            }
+            if (periodo == 0) {
+                incomes.setText(NumberFormat.getCurrencyInstance().format(incom));
+            } else if(periodo == 1) {
+                incomes.setText(NumberFormat.getCurrencyInstance().format(incomdia));
+            } else {
+                incomes.setText(NumberFormat.getCurrencyInstance().format(incommes));
+            }
         } catch (Exception e) {
             Toast.makeText(getContext(), "No hay incomes.", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -128,13 +145,22 @@ public class HomeFragment extends Fragment {
         String[] campos = {UtilityMovement.PRECIO};
         try {
             Cursor cursor = db.query(UtilityMovement.TABLA_MOVEMENTS, campos, UtilityMovement.TYPE + "=" + "0", null, null, null, null);
+            Cursor cursordia = db.rawQuery("select precio from movements where type = 0 and created_at = CURRENT_DATE", null);
             while (cursor.moveToNext()) {
                 outcom += Integer.parseInt(cursor.getString(0));
             }
-            outcomes.setText(NumberFormat.getCurrencyInstance().format(outcom));
+            while (cursordia.moveToNext()) {
+                outcomdia += Integer.parseInt(cursordia.getString(0));
+            }
+            if (periodo == 0) {
+                outcomes.setText(NumberFormat.getCurrencyInstance().format(outcom));
+            } else if(periodo == 1) {
+                outcomes.setText(NumberFormat.getCurrencyInstance().format(outcomdia));
+            } else {
+                outcomes.setText(NumberFormat.getCurrencyInstance().format(outcommes));
+            }
         } catch (Exception e) {
             Toast.makeText(getContext(), "No hay outcomes.", Toast.LENGTH_SHORT).show();
-
         }
     }
 
