@@ -140,7 +140,6 @@ public class HomeFragment extends Fragment {
 
     private void consultarReminders() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        String[] campos = {UtilityMovement.NAME, UtilityMovement.PRECIO};
         try {
             Cursor cursor = db.rawQuery("select name,precio from movements where frequency != \"\"", null);
             while (cursor.moveToNext()) {

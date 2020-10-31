@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,14 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.aplimovil.upocket.Goal;
 import com.aplimovil.upocket.GoalAdapter;
-import com.aplimovil.upocket.MainActivity;
 import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterGoalActivity;
-import com.aplimovil.upocket.ui.home.HomeFragment;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -40,11 +35,14 @@ public class GoalsFragment extends Fragment {
     ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
     ConexionSQLiteOpenHelper conn;
+    private int incom = 0;
+    private int outcom = 0;
+    private int balan = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_goals, container, false);
-        
+
         recyclerGoals = root.findViewById(R.id.recycler_view_goal_item);
         recyclerGoals.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -58,18 +56,30 @@ public class GoalsFragment extends Fragment {
         return root;
     }
 
-    private void consultar(){
+    private void consultar() {
         SQLiteDatabase db = conn.getReadableDatabase();
-        String[] campos = {UtilityGoal.META , UtilityGoal.PRECIO};
+        String[] campos = {UtilityGoal.META, UtilityGoal.PRECIO};
+        try {
+            Cursor in = db.rawQuery("select precio from movements where type = 1;", null);
+            Cursor out = db.rawQuery("select precio from movements where type = 0;", null);
+            while (in.moveToNext()) {
+                incom += Integer.parseInt(in.getString(0));
+            }
+            while (out.moveToNext()) {
+                outcom += Integer.parseInt(out.getString(0));
+            }
+            balan = incom - outcom;
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "No hay Saldo.", Toast.LENGTH_SHORT).show();
+        }
+
         try {
             Cursor cursor = db.query(UtilityGoal.TABLA_GOALS, campos, null, null, null, null, null);
-            while(cursor.moveToNext()) {
-                listaMetas.add(new Goal(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1))), NumberFormat.getCurrencyInstance().format(10)));
+            while (cursor.moveToNext()) {
+                listaMetas.add(new Goal(cursor.getString(0), NumberFormat.getCurrencyInstance().format(Integer.parseInt(cursor.getString(1))), NumberFormat.getCurrencyInstance().format(balan - Integer.parseInt(cursor.getString(1)))));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getContext(), "No hay metas.", Toast.LENGTH_SHORT).show();
-
         }
     }
 
