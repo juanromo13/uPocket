@@ -60,8 +60,8 @@ public class RegisterGoalActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
-                break;
+                onBackPressed();
+                return false;
         }
         return true;
     }

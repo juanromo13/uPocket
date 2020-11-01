@@ -114,15 +114,4 @@ public class RegisterMovementActivity extends AppCompatActivity {
         frecuencia.setText("");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
 }

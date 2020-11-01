@@ -20,8 +20,8 @@ public class ActivityFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_activity, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        textView.setText(R.string.title_activity);
+
+
 
         return root;
     }
