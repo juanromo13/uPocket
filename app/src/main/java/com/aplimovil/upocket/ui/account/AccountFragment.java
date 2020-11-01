@@ -1,27 +1,36 @@
 package com.aplimovil.upocket.ui.account;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.aplimovil.upocket.LoginActivity;
+import com.aplimovil.upocket.MainActivity;
 import com.aplimovil.upocket.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
-
 public class AccountFragment extends Fragment {
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
+
+    private FirebaseAuth mAuth;
 
     TextView tvName, tvEmail, tvDate;
+    Button btnLogout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,40 +40,84 @@ public class AccountFragment extends Fragment {
         tvName = root.findViewById(R.id.input_name);
         tvEmail = root.findViewById(R.id.input_email);
         tvDate = root.findViewById(R.id.input_date);
+        btnLogout = root.findViewById(R.id.button_logout);
 
-        obtenerDatos();
+        // Initialize Firebase Firestore
+        db = FirebaseFirestore.getInstance();
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+
+                Toast.makeText(getContext(), R.string.msg_logout, Toast.LENGTH_LONG).show();
+
+                startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
 
         return root;
     }
 
-    private void obtenerDatos() {
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        db.document("usuarios/1")
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        compruebaLogin(currentUser);
+    }
+
+    private void compruebaLogin(FirebaseUser user) {
+        if (user != null) {
+            Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
+
+            obtenerDatos();
+
+            btnLogout.setEnabled(true);
+        }
+        else {
+            Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
+
+            btnLogout.setEnabled(false);
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setMessage(R.string.msg_login);
+            alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+            });
+            alert.setNegativeButton(R.string.btn_nologin, null);
+            alert.show();
+        }
+    }
+
+    private void obtenerDatos() {
+        String id = mAuth.getCurrentUser().getUid();
+
+        db.collection("usuarios").document(id)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    String miName = documentSnapshot.getString("nombre");
-                    String miEmail = documentSnapshot.getString("email");
-                    String miDate = documentSnapshot.getTimestamp("fechanacimiento").toDate().toString();
+                    String miName = documentSnapshot.getString("uNombre");
+                    String miEmail = documentSnapshot.getString("uEmail");
+                    String miDate = documentSnapshot.getTimestamp("uFechaNacimiento").toDate().toString();
 
                     tvName.setText(miName);
                     tvEmail.setText(miEmail);
                     tvDate.setText(miDate);
 
-                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                    alert.setTitle("Monitoreo BD");
-                    alert.setMessage("DocumentSnapshot Existe!");
-                    alert.setPositiveButton("OK", null);
-                    alert.show();
+                    Toast.makeText(getContext(), "DocumentSnapshot existe!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                    alert.setTitle("Monitoreo BD");
-                    alert.setMessage("DocumentSnapshot NO Existe!");
-                    alert.setPositiveButton("OK", null);
-                    alert.show();
+                    Toast.makeText(getContext(), "DocumentSnapshot NO existe!", Toast.LENGTH_LONG).show();
                 }
             }
         });

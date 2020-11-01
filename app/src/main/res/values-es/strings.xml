@@ -26,4 +26,17 @@
     <string name="input_type">Tipo</string>
     <string name="profile_picture">Foto de Perfil</string>
     <string name="copyright_picture">Derechos de Autor</string>
+    <string name="app_logo">uPocket ID</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="input_password">Contraseña</string>
+    <string name="msg_noautenticado">No has iniciado sesión.</string>
+    <string name="msg_autenticado">Hay una sesión activa.</string>
+    <string name="msg_login">¿Deseas iniciar sesión?</string>
+    <string name="ok">OK</string>
+    <string name="btn_nologin">No ahora!</string>
+    <string name="msg_badlogin">Email o contraseña incorrectos. Intenta de nuevo.</string>
+    <string name="msg_fieldsincompletes">Completa todos los campos.</string>
+    <string name="msg_logout">Sesión cerrada con éxito.</string>
+    <string name="msg_minpassword">Password debe contener al menos 6 caracteres.</string>
 </resources>
