@@ -48,7 +48,7 @@ public class GoalsFragment extends Fragment {
 
         conn = new ConexionSQLiteOpenHelper(getContext());
 
-        consultar();
+        consultarMeta();
 
         GoalAdapter adapter = new GoalAdapter(listaMetas);
         recyclerGoals.setAdapter(adapter);
@@ -56,7 +56,7 @@ public class GoalsFragment extends Fragment {
         return root;
     }
 
-    private void consultar() {
+    private void consultarMeta() {
         SQLiteDatabase db = conn.getReadableDatabase();
         String[] campos = {UtilityGoal.META, UtilityGoal.PRECIO};
         try {
