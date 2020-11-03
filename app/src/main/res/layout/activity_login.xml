@@ -7,20 +7,32 @@
     tools:context=".LoginActivity">
 
     <ImageView
+        android:id="@+id/logotipo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:src="@color/colorAccent"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/app_logo"/>
 
+    <TextView
+        android:id="@+id/saludo_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logotipo"
+        android:layout_marginTop="48dp"
+        android:hint="@string/txt_saludo_login"
+        android:gravity="center_horizontal"
+        />
+
     <EditText
         android:id="@+id/input_email"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/saludo_login"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:hint="@string/input_email"
@@ -40,6 +52,17 @@
         android:autofillHints="@string/input_password"
         />
 
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:hint="@string/txt_forgot_password"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/input_password"
+        />
+
     <Button
         android:id="@+id/bottom_login"
         android:layout_width="match_parent"
@@ -53,7 +76,7 @@
         android:textStyle="bold"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/input_password"
+        android:layout_below="@+id/forgot_password"
         />
 
     <Button

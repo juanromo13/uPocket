@@ -29,7 +29,7 @@ public class AccountFragment extends Fragment {
 
     private FirebaseAuth mAuth;
 
-    TextView tvName, tvEmail, tvDate;
+    TextView tvStranger, tvName, tvEmail, tvUid;
     Button btnLogout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,9 +37,10 @@ public class AccountFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_account, container, false);
 
+        tvStranger = root.findViewById(R.id.user_text_view);
         tvName = root.findViewById(R.id.input_name_account);
         tvEmail = root.findViewById(R.id.input_email_account);
-        tvDate = root.findViewById(R.id.input_date_account);
+        tvUid = root.findViewById(R.id.input_uid_account);
         btnLogout = root.findViewById(R.id.button_logout_account);
 
         // Initialize Firebase Firestore
@@ -52,8 +53,6 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-
-                //Toast.makeText(getContext(), R.string.msg_logout, Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
@@ -73,14 +72,14 @@ public class AccountFragment extends Fragment {
 
     private void compruebaLogin(FirebaseUser user) {
         if (user != null) {
-            Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
 
             obtenerDatos();
 
             btnLogout.setEnabled(true);
         }
         else {
-            Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
 
             btnLogout.setEnabled(false);
 
@@ -98,26 +97,25 @@ public class AccountFragment extends Fragment {
     }
 
     private void obtenerDatos() {
-        final String miId = mAuth.getCurrentUser().getUid();
+        final String miUid = mAuth.getCurrentUser().getUid();
         final String miEmail = mAuth.getCurrentUser().getEmail();
 
-        db.collection("usuarios").document(miId)
+        db.collection("usuarios").document(miUid)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     String miName = documentSnapshot.getString("uNombre");
-                    //String miDate = documentSnapshot.getTimestamp("uFechaNacimiento").toDate().toString();
+
+                    tvStranger.setText(miName);
 
                     tvName.setText(miName);
                     tvEmail.setText(miEmail);
-                    //tvDate.setText(miDate);
-
-                    //Toast.makeText(getContext(), "DocumentSnapshot existe!", Toast.LENGTH_LONG).show();
+                    tvUid.setText(miUid);
                 }
                 else {
-                    //Toast.makeText(getContext(), "DocumentSnapshot NO existe!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.msg_error_documentsnapshot, Toast.LENGTH_LONG).show();
                 }
             }
         });

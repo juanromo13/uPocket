@@ -43,8 +43,15 @@
     <string name="msg_nopasswordsregister">Passwords are different</string>
     <string name="msg_badregister">Sign up failed. Try again.</string>
     <string name="msg_completeregister">"Successful registration! "</string>
-    <string name="msg_goodlogin">Login is successful.</string>
+    <string name="msg_goodlogin">Login is successful. Welcome!</string>
     <string name="msg_activesesion">There is an active session.</string>
     <string name="valor">Value</string>
     <string name="movimientos">Movements</string>
+    <string name="txt_hello">Hello</string>
+    <string name="txt_stranger">Stranger</string>
+    <string name="input_uid">UID</string>
+    <string name="msg_error_documentsnapshot">There was an error with DocumentSnapshot.</string>
+    <string name="txt_saludo_login">Here you can log in.</string>
+    <string name="txt_forgot_password">Forgot your password?</string>
+    <string name="txt_registration">Getting a uPocket account is very easy:</string>
 </resources>

@@ -62,11 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                //alert.setMessage("Oprimiste al boton de ir a registrarse.");
-                //alert.setPositiveButton(R.string.ok, null);
-                //alert.show();
-
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });

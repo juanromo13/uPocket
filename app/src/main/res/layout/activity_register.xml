@@ -7,20 +7,32 @@
     tools:context=".RegisterActivity">
 
     <ImageView
+        android:id="@+id/logotipo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:src="@color/colorAccent"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/app_logo"/>
 
+    <TextView
+        android:id="@+id/saludo_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logotipo"
+        android:layout_marginTop="48dp"
+        android:hint="@string/txt_registration"
+        android:gravity="center_horizontal"
+        />
+
     <EditText
         android:id="@+id/input_name"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/saludo_register"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:hint="@string/input_name"

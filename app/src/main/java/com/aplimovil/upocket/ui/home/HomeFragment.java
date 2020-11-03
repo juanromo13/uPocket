@@ -23,8 +23,11 @@ import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterMovementActivity;
 import com.aplimovil.upocket.Reminder;
 import com.aplimovil.upocket.ReminderAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -54,11 +57,14 @@ public class HomeFragment extends Fragment {
     private TextView balance;
     private TextView incomes;
     private TextView outcomes;
+    private TextView tvStranger;
     private boolean esVisible = true;
 
-    ConexionSQLiteOpenHelper conn;
+    //ConexionSQLiteOpenHelper conn;
 
     private FirebaseAuth mAuth;
+
+    private FirebaseFirestore dbFirestore;
   
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +76,7 @@ public class HomeFragment extends Fragment {
         balance = root.findViewById(R.id.balance_TextView);
         incomes = root.findViewById(R.id.incomes_value);
         outcomes = root.findViewById(R.id.outcomes_value);
+        tvStranger = root.findViewById(R.id.user_text_home);
 
         // Llenado de incomes y outcomes
         consultarIncomes();
@@ -122,6 +129,9 @@ public class HomeFragment extends Fragment {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Initialize Firebase Firestore
+        dbFirestore = FirebaseFirestore.getInstance();
+
         return root;
     }
 
@@ -137,11 +147,23 @@ public class HomeFragment extends Fragment {
 
     private void compruebaLogin(FirebaseUser user) {
         if (user != null) {
+            final String miUid = mAuth.getCurrentUser().getUid();
 
-            //Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
-        }
-        else {
-            //Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
+            dbFirestore.collection("usuarios").document(miUid)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        String miName = documentSnapshot.getString("uNombre");
+
+                        tvStranger.setText(miName);
+                    }
+                    else {
+                        Toast.makeText(getContext(), R.string.msg_error_documentsnapshot, Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
 

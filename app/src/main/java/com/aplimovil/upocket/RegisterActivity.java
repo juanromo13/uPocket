@@ -96,11 +96,11 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    String id = mAuth.getCurrentUser().getUid();
+                    String uid = mAuth.getCurrentUser().getUid();
 
                     User miUser = new User(miNombre);
 
-                    db.collection("usuarios").document(id)
+                    db.collection("usuarios").document(uid)
                             .set(miUser)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
