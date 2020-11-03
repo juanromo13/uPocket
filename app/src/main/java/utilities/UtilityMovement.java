@@ -9,6 +9,7 @@ public class UtilityMovement {
     public static final String TYPE = "type";
     public static final String DATE = "date";
     public static final String FREQUENCY = "frequency";
+    public static final String CREATED_AT = "created_at";
     public static final String CREATE_TABLA_MOVEMENT =
             "CREATE TABLE " +TABLA_MOVEMENTS+  "("
             +ID+ " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
@@ -16,5 +17,6 @@ public class UtilityMovement {
             +PRECIO+ " INTEGER NOT NULL, "
             +TYPE+ " INTEGER NOT NULL, "
             +DATE+ " DATE, "
-            +FREQUENCY+ " TEXT)";
+            +FREQUENCY+ " TEXT, "
+            +CREATED_AT+ " DATE DEFAULT CURRENT_DATE)";
 }

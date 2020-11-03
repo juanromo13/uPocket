@@ -20,7 +20,9 @@
         <activity
             android:name=".RegisterMovementActivity"
             android:label="@string/title_movement"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".RegisterGoalActivity"
             android:label="@string/title_goals"

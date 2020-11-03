@@ -51,8 +51,7 @@ public class RegisterMovementActivity extends AppCompatActivity {
         frequently.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean checked = ((CheckBox) v).isChecked();
-                if (checked == true) {
+                if (frequently.isChecked() == true) {
                     boton_fecha.setVisibility(View.VISIBLE);
                     fecha.setVisibility(View.VISIBLE);
                     frecuencia.setVisibility(View.VISIBLE);
@@ -86,6 +85,7 @@ public class RegisterMovementActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarMovement();
+                limpiarEditText();
             }
         });
 
@@ -101,21 +101,17 @@ public class RegisterMovementActivity extends AppCompatActivity {
         values.put(UtilityMovement.TYPE, Integer.parseInt(tipo.getText().toString()));
         values.put(UtilityMovement.DATE, fecha.getText().toString());
         values.put(UtilityMovement.FREQUENCY, frecuencia.getText().toString());
-
         Long idResultante = db.insert(UtilityMovement.TABLA_MOVEMENTS, UtilityMovement.ID, values);
         Toast.makeText(this, "Id Registro" + idResultante, Toast.LENGTH_SHORT).show();
         db.close();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
+    private void limpiarEditText() {
+        tipo.setText("");
+        nombre.setText("");
+        precio.setText("");
+        fecha.setText("");
+        frecuencia.setText("");
     }
+
 }

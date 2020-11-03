@@ -36,6 +36,7 @@ public class RegisterGoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registrarGoal();
+                limpiarEditText();
             }
         });
     }
@@ -53,6 +54,10 @@ public class RegisterGoalActivity extends AppCompatActivity {
         db.close();
     }
 
+    private void limpiarEditText() {
+        meta.setText("");
+        precio.setText("");
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,8 +65,8 @@ public class RegisterGoalActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
-                break;
+                onBackPressed();
+                return false;
         }
         return true;
     }

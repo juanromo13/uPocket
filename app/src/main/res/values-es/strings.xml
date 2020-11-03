@@ -45,4 +45,6 @@
     <string name="msg_completeregister">El registro fue exitoso!</string>
     <string name="msg_goodlogin">El inicio de sesión fue exitoso.</string>
     <string name="msg_activesesion">Hay una sesión activa en este momento.</string>
+    <string name="valor">Valor</string>
+    <string name="movimientos">Movimientos</string>
 </resources>
