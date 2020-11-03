@@ -1,5 +1,6 @@
 package com.aplimovil.upocket.ui.home;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +23,8 @@ import com.aplimovil.upocket.R;
 import com.aplimovil.upocket.RegisterMovementActivity;
 import com.aplimovil.upocket.Reminder;
 import com.aplimovil.upocket.ReminderAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -53,6 +56,10 @@ public class HomeFragment extends Fragment {
     private TextView outcomes;
     private boolean esVisible = true;
 
+    ConexionSQLiteOpenHelper conn;
+
+    private FirebaseAuth mAuth;
+  
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -112,9 +119,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
         return root;
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        compruebaLogin(currentUser);
+    }
+
+    private void compruebaLogin(FirebaseUser user) {
+        if (user != null) {
+
+            //Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
+        }
+        else {
+            //Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void consultarIncomes() {
         SQLiteDatabase db = conn.getReadableDatabase();

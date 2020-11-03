@@ -24,6 +24,27 @@
     <string name="name_movement">Name</string>
     <string name="title_add_new_movement">Add a New Movement</string>
     <string name="input_type">Type</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="copyright_picture">Copyright Picture</string>
+    <string name="app_logo">uPocket ID</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="input_password">Password</string>
+    <string name="msg_noautenticado">You are not logged in</string>
+    <string name="msg_autenticado">There is an active session</string>
+    <string name="msg_login">Do you want to login?</string>
+    <string name="ok">OK</string>
+    <string name="btn_nologin">No</string>
+    <string name="msg_badlogin">Wrong email or password. Try again.</string>
+    <string name="msg_fieldsincompletes">Fill in all fields.</string>
+    <string name="msg_logout">The session was closed successfully.</string>
+    <string name="msg_minpassword">Minimum 6 characters in the password.</string>
+    <string name="input_repeatpassword">Repeat Password</string>
+    <string name="msg_nopasswordsregister">Passwords are different</string>
+    <string name="msg_badregister">Sign up failed. Try again.</string>
+    <string name="msg_completeregister">"Successful registration! "</string>
+    <string name="msg_goodlogin">Login is successful.</string>
+    <string name="msg_activesesion">There is an active session.</string>
     <string name="valor">Value</string>
     <string name="movimientos">Movements</string>
 </resources>

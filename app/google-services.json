@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "665235707897",
+    "firebase_url": "https://upocket-fe4f0.firebaseio.com",
+    "project_id": "upocket-fe4f0",
+    "storage_bucket": "upocket-fe4f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665235707897:android:f47493dddb9842af3d0f28",
+        "android_client_info": {
+          "package_name": "com.aplimovil.upocket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665235707897-s9rmmjt02dcck8s33u7d7m3vn2ucotko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aplimovil.upocket",
+            "certificate_hash": "421ef07a1da9392c7c23e7e48501f7d8a147cdda"
+          }
+        },
+        {
+          "client_id": "665235707897-fbfbgfn8iqeksiqo4fpi0rtc7kjc7e8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrXLurSF2e2AYlZ4tL_g83B17R2clg_Jo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665235707897-fbfbgfn8iqeksiqo4fpi0rtc7kjc7e8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
