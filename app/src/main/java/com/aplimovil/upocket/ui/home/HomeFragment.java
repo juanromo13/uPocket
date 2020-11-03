@@ -117,10 +117,11 @@ public class HomeFragment extends Fragment {
 
     private void compruebaLogin(FirebaseUser user) {
         if (user != null) {
-            Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_SHORT).show();
+
+            //Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
         }
     }
 }

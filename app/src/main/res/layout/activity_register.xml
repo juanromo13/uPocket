@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <ImageView
         android:layout_centerHorizontal="true"
@@ -16,11 +16,25 @@
         android:contentDescription="@string/app_logo"/>
 
     <EditText
-        android:id="@+id/input_email"
-        android:inputType="textEmailAddress"
+        android:id="@+id/input_name"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="@string/input_name"
+        android:autofillHints="@string/input_name"
+        />
+
+    <EditText
+        android:id="@+id/input_email"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_below="@id/input_name"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:hint="@string/input_email"
@@ -40,24 +54,21 @@
         android:autofillHints="@string/input_password"
         />
 
-    <Button
-        android:id="@+id/bottom_login"
+    <EditText
+        android:id="@+id/input_repeat_password"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
+        android:layout_below="@id/input_password"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/login"
-        android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/input_password"
+        android:hint="@string/input_repeatpassword"
+        android:autofillHints="@string/input_repeatpassword"
         />
 
     <Button
-        android:id="@+id/bottom_register"
+        android:id="@+id/bottom_complete_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -65,12 +76,12 @@
         android:layout_centerHorizontal="true"
         android:text="@string/register"
         android:textColor="@android:color/white"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="14sp"
-        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/bottom_login"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/input_repeat_password"
         />
 
 </RelativeLayout>

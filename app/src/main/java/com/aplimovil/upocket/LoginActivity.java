@@ -3,8 +3,11 @@ package com.aplimovil.upocket;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
         tvEmail = (EditText) findViewById(R.id.input_email);
         tvPassword = (EditText) findViewById(R.id.input_password);
-        btnLogin = (Button) findViewById(R.id.bottom_login);
-        btnRegister = (Button) findViewById(R.id.bottom_register);
+        btnLogin = findViewById(R.id.bottom_login);
+        btnRegister = findViewById(R.id.bottom_register);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +54,20 @@ public class LoginActivity extends AppCompatActivity {
                     loguearUsuario();
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, R.string.msg_fieldsincompletes, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.msg_fieldsincompletes, Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                //alert.setMessage("Oprimiste al boton de ir a registrarse.");
+                //alert.setPositiveButton(R.string.ok, null);
+                //alert.show();
+
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
@@ -62,11 +77,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, R.string.msg_goodlogin, Toast.LENGTH_LONG).show();
+
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, R.string.msg_badlogin, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.msg_badlogin, Toast.LENGTH_LONG).show();
                 }
             }
         });

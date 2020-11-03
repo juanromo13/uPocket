@@ -34,9 +34,15 @@
     <string name="msg_autenticado">There is an active session</string>
     <string name="msg_login">Do you want to login?</string>
     <string name="ok">OK</string>
-    <string name="btn_nologin">No!</string>
+    <string name="btn_nologin">No</string>
     <string name="msg_badlogin">Wrong email or password. Try again.</string>
     <string name="msg_fieldsincompletes">Fill in all fields.</string>
     <string name="msg_logout">The session was closed successfully.</string>
     <string name="msg_minpassword">Minimum 6 characters in the password.</string>
+    <string name="input_repeatpassword">Repeat Password</string>
+    <string name="msg_nopasswordsregister">Passwords are different</string>
+    <string name="msg_badregister">Sign up failed. Try again.</string>
+    <string name="msg_completeregister">"Successful registration! "</string>
+    <string name="msg_goodlogin">Login is successful.</string>
+    <string name="msg_activesesion">There is an active session.</string>
 </resources>

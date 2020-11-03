@@ -37,10 +37,10 @@ public class AccountFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_account, container, false);
 
-        tvName = root.findViewById(R.id.input_name);
-        tvEmail = root.findViewById(R.id.input_email);
-        tvDate = root.findViewById(R.id.input_date);
-        btnLogout = root.findViewById(R.id.button_logout);
+        tvName = root.findViewById(R.id.input_name_account);
+        tvEmail = root.findViewById(R.id.input_email_account);
+        tvDate = root.findViewById(R.id.input_date_account);
+        btnLogout = root.findViewById(R.id.button_logout_account);
 
         // Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
@@ -53,7 +53,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 mAuth.signOut();
 
-                Toast.makeText(getContext(), R.string.msg_logout, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), R.string.msg_logout, Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(getContext(), MainActivity.class));
             }
@@ -98,26 +98,26 @@ public class AccountFragment extends Fragment {
     }
 
     private void obtenerDatos() {
-        String id = mAuth.getCurrentUser().getUid();
+        final String miId = mAuth.getCurrentUser().getUid();
+        final String miEmail = mAuth.getCurrentUser().getEmail();
 
-        db.collection("usuarios").document(id)
+        db.collection("usuarios").document(miId)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     String miName = documentSnapshot.getString("uNombre");
-                    String miEmail = documentSnapshot.getString("uEmail");
-                    String miDate = documentSnapshot.getTimestamp("uFechaNacimiento").toDate().toString();
+                    //String miDate = documentSnapshot.getTimestamp("uFechaNacimiento").toDate().toString();
 
                     tvName.setText(miName);
                     tvEmail.setText(miEmail);
-                    tvDate.setText(miDate);
+                    //tvDate.setText(miDate);
 
-                    Toast.makeText(getContext(), "DocumentSnapshot existe!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "DocumentSnapshot existe!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(getContext(), "DocumentSnapshot NO existe!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "DocumentSnapshot NO existe!", Toast.LENGTH_LONG).show();
                 }
             }
         });
