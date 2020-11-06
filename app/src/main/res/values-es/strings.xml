@@ -54,4 +54,7 @@
     <string name="txt_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="txt_hello">Hola</string>
     <string name="txt_registration">Obtener una cuenta uPocket es sencillo:</string>
+    <string name="msg_badnewmovement">Error al registrar un nuevo movimiento. Intenta de nuevo.</string>
+    <string name="msg_goodnewmovement">Movimiento registrado con éxito.</string>
+    <string name="msg_listenfailed">Escucha fallida. Error con Firebase.</string>
 </resources>

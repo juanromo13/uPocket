@@ -12,10 +12,26 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import BD.ConexionSQLiteOpenHelper;
 import utilities.UtilityMovement;
@@ -26,6 +42,10 @@ public class RegisterMovementActivity extends AppCompatActivity {
     EditText tipo, nombre, precio, frecuencia, fecha;
     Button crear, boton_fecha;
     private int dia, mes, anio;
+
+    private FirebaseFirestore dbFirestore;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +83,12 @@ public class RegisterMovementActivity extends AppCompatActivity {
             }
         });
 
+        // Initialize Firebase Firestore
+        dbFirestore = FirebaseFirestore.getInstance();
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
         boton_fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,18 +118,68 @@ public class RegisterMovementActivity extends AppCompatActivity {
     }
 
     private void registrarMovement() {
-        ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper(this);
-        SQLiteDatabase db = conn.getWritableDatabase();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        ContentValues values = new ContentValues();
-        values.put(UtilityMovement.NAME, nombre.getText().toString());
-        values.put(UtilityMovement.PRECIO, Integer.parseInt(precio.getText().toString()));
-        values.put(UtilityMovement.TYPE, Integer.parseInt(tipo.getText().toString()));
-        values.put(UtilityMovement.DATE, fecha.getText().toString());
-        values.put(UtilityMovement.FREQUENCY, frecuencia.getText().toString());
-        Long idResultante = db.insert(UtilityMovement.TABLA_MOVEMENTS, UtilityMovement.ID, values);
-        Toast.makeText(this, "Id Registro" + idResultante, Toast.LENGTH_SHORT).show();
-        db.close();
+        if (currentUser != null) {
+            final String miUid = currentUser.getUid();
+
+            // Se crea un obejeto de Movimiento para guardarlo en la dbFirestore
+            Map<String, Object> miMovimiento = new HashMap<>();
+            miMovimiento.put("mFechaCreacion", Timestamp.now());
+            miMovimiento.put("mNombre", nombre.getText().toString());
+            miMovimiento.put("mPrecio", Integer.parseInt(precio.getText().toString()));
+            miMovimiento.put("mTipo", tipo.getText().toString());
+            miMovimiento.put("uId", miUid);
+
+            // Se verifica si es frecuente o no. Si no es frecuente, la mFechaMensual es tipo null.
+            if (fecha.length() > 1) {
+                //final String miFecha = fecha.getText().toString();
+                DateFormat miFormato = new SimpleDateFormat("dd/MM/yyyy");
+                Date miFecha = null;
+                try {
+                    miFecha = miFormato.parse(fecha.getText().toString());
+                } catch (ParseException e) { e.printStackTrace(); }
+
+                miMovimiento.put("mFechaMensual", miFecha);
+                miMovimiento.put("mFrecuencia", frecuencia.getText().toString()); // 0 Quincenal, 1 Mensual, 2 Anual.
+
+                //Toast.makeText(getApplicationContext(), "Fecha NO nula", Toast.LENGTH_LONG).show();
+            }
+            else {
+                miMovimiento.put("mFechaMensual", null);
+                miMovimiento.put("mFrecuencia", null);
+                //Toast.makeText(getApplicationContext(), "Fecha nula", Toast.LENGTH_LONG).show();
+            }
+
+            dbFirestore.collection("movimientos")
+                    .add(miMovimiento)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(getApplicationContext(), R.string.msg_goodnewmovement, Toast.LENGTH_LONG).show();
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), R.string.msg_badnewmovement, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else {
+            ConexionSQLiteOpenHelper conn = new ConexionSQLiteOpenHelper(this);
+            SQLiteDatabase db = conn.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(UtilityMovement.NAME, nombre.getText().toString());
+            values.put(UtilityMovement.PRECIO, Integer.parseInt(precio.getText().toString()));
+            values.put(UtilityMovement.TYPE, Integer.parseInt(tipo.getText().toString()));
+            values.put(UtilityMovement.DATE, fecha.getText().toString());
+            values.put(UtilityMovement.FREQUENCY, frecuencia.getText().toString());
+            Long idResultante = db.insert(UtilityMovement.TABLA_MOVEMENTS, UtilityMovement.ID, values);
+            Toast.makeText(this, R.string.msg_goodnewmovement + ". ID de Registro: " + idResultante, Toast.LENGTH_SHORT).show();
+            db.close();
+        }
     }
 
     private void limpiarEditText() {

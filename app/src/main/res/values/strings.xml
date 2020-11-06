@@ -54,4 +54,7 @@
     <string name="txt_saludo_login">Here you can log in.</string>
     <string name="txt_forgot_password">Forgot your password?</string>
     <string name="txt_registration">Getting a uPocket account is very easy:</string>
+    <string name="msg_badnewmovement">Failed to register a new movement. Try again.</string>
+    <string name="msg_goodnewmovement">New movement successfully registered.</string>
+    <string name="msg_listenfailed">Listen failed. Error on Firebase.</string>
 </resources>

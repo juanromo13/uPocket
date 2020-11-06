@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.aplimovil.upocket.LoginActivity;
@@ -21,7 +22,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class AccountFragment extends Fragment {
 
@@ -101,15 +104,29 @@ public class AccountFragment extends Fragment {
         final String miEmail = mAuth.getCurrentUser().getEmail();
 
         db.collection("usuarios").document(miUid)
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                if (documentSnapshot.exists()) {
+                    String miName = "No Name";
+                    if (documentSnapshot.contains("uNombre")) {
+                        miName = documentSnapshot.getString("uNombre");
+                    }
+                    tvStranger.setText(miName);
+                }
+            }
+        });
+
+        db.collection("usuarios").document(miUid)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    String miName = documentSnapshot.getString("uNombre");
-
-                    tvStranger.setText(miName);
-
+                    String miName = "No Name";
+                    if (documentSnapshot.contains("uNombre")) {
+                        miName = documentSnapshot.getString("uNombre");
+                    }
                     tvName.setText(miName);
                     tvEmail.setText(miEmail);
                     tvUid.setText(miUid);
