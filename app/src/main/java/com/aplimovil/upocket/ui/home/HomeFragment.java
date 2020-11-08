@@ -160,7 +160,7 @@ public class HomeFragment extends Fragment {
                                 @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
                     Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
-                    Log.w(TAG, "Listen failed.", error);
+                    Log.w(TAG, "Listen failed on Incomes and Outcomes with Firebase.", error);
                     return;
                 }
 
@@ -411,13 +411,14 @@ public class HomeFragment extends Fragment {
 
             dbFirestore.collection("movimientos")
                     .whereEqualTo("uId", miUid)
+                    .orderBy("mFechaMensual")
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value,
                                     @Nullable FirebaseFirestoreException error) {
                     if (error != null) {
                         Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
-                        Log.w(TAG, "Listen failed.", error);
+                        Log.w(TAG, "Listen failed on Reminders with Firebase.", error);
                         return;
                     }
 
