@@ -1,4 +1,4 @@
-package com.aplimovil.upocket.ui.home;
+package com.aplimovil.upocket.ui.home;//fypackage com.aplimovil.upocket.ui.home;
 
 import android.content.Intent;
 import android.database.Cursor;

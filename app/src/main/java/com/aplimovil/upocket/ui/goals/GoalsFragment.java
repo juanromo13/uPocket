@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,12 @@ import utilities.UtilityGoal;
 
 public class GoalsFragment extends Fragment {
 
+    //New atributes
+    static final private int REMOVE_TODO = Menu.FIRST;
+    private boolean addingNew = false;
+    private ListView listGoals;
+    //End
+
     ArrayList<Goal> listaMetas = new ArrayList<>();
     RecyclerView recyclerGoals;
     ConexionSQLiteOpenHelper conn;
@@ -52,6 +60,8 @@ public class GoalsFragment extends Fragment {
 
         GoalAdapter adapter = new GoalAdapter(listaMetas);
         recyclerGoals.setAdapter(adapter);
+
+        registerForContextMenu(recyclerGoals);
 
         return root;
     }
@@ -95,6 +105,7 @@ public class GoalsFragment extends Fragment {
         inflater.inflate(R.menu.goals_menu, menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -104,4 +115,6 @@ public class GoalsFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
