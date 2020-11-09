@@ -72,17 +72,21 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolderMeta
                 //AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-                builder.setMessage("Esta seguro de que quiere borrar esta meta?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                builder.setMessage("Que desea hacer con la meta seleccionada?").setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String meta_eliminar = listaMetas.get(position).getMeta();
 
-                        String metaEditar = listaMetas.get(position).getMeta();
                         removeItem(meta_eliminar, view);
-                        editarItem(metaEditar, view);
                         Toast.makeText(view.getContext(), "Meta eliminada", Toast.LENGTH_SHORT).show();
                     }
-                }).setNegativeButton("Cancelar", null);
+                }).setNegativeButton("Editar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String meta_actualizar = listaMetas.get(position).getMeta();
+                        editarItem(view, meta_actualizar);
+                    }
+                });
 
                 AlertDialog alert = builder.create();
                 alert.show();
@@ -90,9 +94,10 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolderMeta
                 return true;
             }
 
-            private void editarItem(String metaEditar, View view) {
-                //Intent registerIntent = new Intent(view.getContext(), RegisterGoalActivity.class);
-                //startActivity(new Intent(view.getContext(), RegisterGoalActivity.class));
+            private void editarItem(View view, String meta_actualizar) {
+                Intent registerIntent = new Intent(view.getContext(), UpdateGoalActivity.class);
+                registerIntent.putExtra("NombreMeta", meta_actualizar);
+                view.getContext().startActivity(registerIntent);
             }
 
             private void removeItem(String metaEliminar, View view) {
