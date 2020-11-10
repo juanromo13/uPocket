@@ -1,6 +1,7 @@
 package com.aplimovil.upocket;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -43,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         tvPassword = (EditText) findViewById(R.id.input_password);
         btnLogin = findViewById(R.id.bottom_login);
         btnRegister = findViewById(R.id.bottom_register);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

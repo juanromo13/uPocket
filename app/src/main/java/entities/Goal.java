@@ -2,38 +2,24 @@ package entities;
 
 public class Goal {
     private String meta;
-    private String precio;
-    private String restante;
+    private int precio;
+    private String uId;
 
-    public Goal(String deseo, String precio, String restante) {
+    public Goal(String deseo, int precio, String uId) {
         this.meta = deseo;
         this.precio = precio;
-        this.restante = restante;
+        this.uId = uId;
     }
 
-    public String getMeta() {
-        return meta;
-    }
+    public String getMeta() { return meta; }
 
-    public void setMeta(String meta) {
-        this.meta = meta;
-    }
+    public void setMeta(String meta) { this.meta = meta; }
 
-    public String getPrecio() {
-        return precio;
-    }
+    public int getPrecio() { return precio; }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
-    }
+    public void setPrecio(int precio) { this.precio = precio; }
 
-    public String getRestante() {
-        return restante;
-    }
+    public String getuId() { return uId; }
 
-    public void setRestante(String restante) {
-        this.restante = restante;
-    }
+    public void setuId(String uId) { this.uId = uId; }
 }
-
-

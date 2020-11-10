@@ -1,6 +1,7 @@
 package com.aplimovil.upocket;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -53,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
         tvPassword = (EditText) findViewById(R.id.input_password);
         tvRepeatPassword = (EditText) findViewById(R.id.input_repeat_password);
         btnRegister = findViewById(R.id.bottom_complete_register);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

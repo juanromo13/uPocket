@@ -59,4 +59,6 @@
     <string name="msg_listenfailed">Listen failed. Error on Firebase.</string>
     <string name="update">Update</string>
     <string name="title_update">Update Goal</string>
+    <string name="msg_goodnewgoal">New Goal successfully registered.</string>
+    <string name="msg_badnewgoal">Failed to register a new goal. Try again.</string>
 </resources>

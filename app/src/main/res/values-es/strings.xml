@@ -59,4 +59,6 @@
     <string name="msg_listenfailed">Escucha fallida. Error con Firebase.</string>
     <string name="update">Actualizar</string>
     <string name="title_update">Actualizar Meta</string>
+    <string name="msg_goodnewgoal">Deseo registrado con éxito.</string>
+    <string name="msg_badnewgoal">Error al registrar un nuevo deseo. Intenta de nuevo.</string>
 </resources>

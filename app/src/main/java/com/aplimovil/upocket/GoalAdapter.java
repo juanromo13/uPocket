@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
