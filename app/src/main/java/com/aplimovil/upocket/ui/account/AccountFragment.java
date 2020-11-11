@@ -75,15 +75,11 @@ public class AccountFragment extends Fragment {
 
     private void compruebaLogin(FirebaseUser user) {
         if (user != null) {
-            //Toast.makeText(getContext(), R.string.msg_autenticado, Toast.LENGTH_LONG).show();
-
             obtenerDatos();
 
             btnLogout.setEnabled(true);
         }
         else {
-            //Toast.makeText(getContext(), R.string.msg_noautenticado, Toast.LENGTH_LONG).show();
-
             btnLogout.setEnabled(false);
 
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());

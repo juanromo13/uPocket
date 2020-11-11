@@ -94,7 +94,8 @@ public class RegisterGoalActivity extends AppCompatActivity {
             values.put(UtilityGoal.PRECIO, Integer.parseInt(precio.getText().toString()));
 
             Long idResultante = db.insert(UtilityGoal.TABLA_GOALS, UtilityGoal.ID, values);
-            Toast.makeText(this, "Id Registro" + idResultante, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_goodnewgoal, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.msg_goodnewgoal + ". " + R.string.msg_asignedid + ": " + idResultante, Toast.LENGTH_LONG).show();
             db.close();
         }
     }

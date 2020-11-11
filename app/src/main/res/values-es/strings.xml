@@ -61,4 +61,10 @@
     <string name="title_update">Actualizar Meta</string>
     <string name="msg_goodnewgoal">Deseo registrado con éxito.</string>
     <string name="msg_badnewgoal">Error al registrar un nuevo deseo. Intenta de nuevo.</string>
+    <string name="msg_noincomes">No tienes ingresos en la Base de Datos.</string>
+    <string name="msg_nooutcomes">No tienes egresos en la Base de Datos.</string>
+    <string name="msg_noreminders">No tienes recordatorios guardados en la Base de Datos.</string>
+    <string name="R.string.nogoals">No tienes metas registradas en la Base de Datos.</string>
+    <string name="msg_nomovements">No tienes movimientos registradas en la Base de Datos.</string>
+    <string name="msg_asignedid">ID asignado</string>
 </resources>

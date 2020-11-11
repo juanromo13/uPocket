@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import BD.ConexionSQLiteOpenHelper;
-import utilities.UtilityGoal;
 import utilities.UtilityMovement;
 
 import static android.content.ContentValues.TAG;
@@ -71,8 +70,6 @@ public class ActivityFragment extends Fragment {
 
         consultarMovimientos();
 
-        //recyclerMovements.setAdapter(adapter);
-
         return root;
     }
 
@@ -90,7 +87,7 @@ public class ActivityFragment extends Fragment {
                     public void onEvent(@Nullable QuerySnapshot value,
                                         @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
-                            Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
                             Log.w(TAG, "Listen failed.", error);
                             return;
                         }
@@ -109,8 +106,6 @@ public class ActivityFragment extends Fragment {
                                 }
 
                                 listaMovimientos.add(new Activity(doc.getString("mNombre"), NumberFormat.getCurrencyInstance().format(doc.getDouble("mPrecio")), miFecha3, Integer.parseInt(doc.getString("mTipo"))));
-                                //Log.d(TAG, "mTipo desde doc.get: " + doc.getString("mTipo") + ". Valor asociado: " + doc.get("mPrecio") + ".");
-
                             }
                         }
                         recyclerMovements.setAdapter(adapter);
@@ -128,7 +123,7 @@ public class ActivityFragment extends Fragment {
                 }
                 recyclerMovements.setAdapter(adapter);
             } catch (Exception e) {
-                Toast.makeText(getContext(), "No hay metas.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.msg_nomovements, Toast.LENGTH_SHORT).show();
             }
         }
     }

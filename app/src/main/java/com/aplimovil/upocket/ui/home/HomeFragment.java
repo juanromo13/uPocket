@@ -65,8 +65,6 @@ public class HomeFragment extends Fragment {
     private ListView listReminderView;
     private boolean esVisible = true;
 
-    //ConexionSQLiteOpenHelper conn;
-
     private FirebaseAuth mAuth;
 
     private FirebaseFirestore dbFirestore;
@@ -92,20 +90,11 @@ public class HomeFragment extends Fragment {
         dbFirestore = FirebaseFirestore.getInstance();
 
         // Llenado de incomes y outcomes
-        //consultarIncomes();
-        //consultarOutcomes();
         consultarIncomesOutcomes();
-        //balan = incom - outcom;
-        // Llenado de Current Balance
-        //balance.setText(NumberFormat.getCurrencyInstance().format(balan));
 
         // Llenado de Remainders
         listReminderView = root.findViewById(R.id.reminders_list);
         consultarReminders();
-
-        // ArrayAdapter of remainders
-        //ReminderAdapter remindersAdapter = new ReminderAdapter(getActivity(), reminders);
-        //listReminderView.setAdapter(remindersAdapter);
 
         // Aqui funcionalidad de ocultar o mostrar balance
         hideButton = root.findViewById(R.id.hide_ImageView);
@@ -156,26 +145,20 @@ public class HomeFragment extends Fragment {
             public void onEvent(@Nullable QuerySnapshot value,
                                 @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
-                    Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
                     Log.w(TAG, "Listen failed on Incomes and Outcomes with Firebase.", error);
                     return;
                 }
 
                 // Consulta de todos los Incomes del usuario con ID = miUid
-                //List<Double> listaIncomes = new ArrayList<>();
                 for (QueryDocumentSnapshot doc : value) {
                     if (doc.get("mPrecio") != null && doc.getString("mTipo").equals("1") && doc.get("mFechaMensual") == null) {
-                        //listaIncomes.add(doc.getDouble("mPrecio"));
                         incom += doc.getDouble("mPrecio");
-                        //Log.d(TAG, "mTipo desde doc.get: " + doc.getString("mTipo") + ". Valor asociado: " + doc.get("mPrecio") + ".");
 
                         switch (periodo) {
                             case 0: // All
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Incom.", Toast.LENGTH_LONG).show();
                                 incomes.setText(NumberFormat.getCurrencyInstance().format(incom));
                                 break;
                             case 1: // Today
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Incom.", Toast.LENGTH_LONG).show();
                                 Timestamp miFechaIn;
                                 Date miFechaIn2;
                                 DateFormat miFormatoIn = new SimpleDateFormat("dd/MM/yyyy");
@@ -187,20 +170,14 @@ public class HomeFragment extends Fragment {
                                     miFechaIn3 = miFormatoIn.format(miFechaIn2);
                                 }
 
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ", con fecha: " + miFechaIn3, Toast.LENGTH_LONG).show();
-                                //Log.d(TAG, "Caso: " + periodo + ", con fecha: " + miFechaIn3 + " de " + doc.get("mNombre"));
-
                                 String fechaHoyIn = miFormatoIn.format(new Date());
-                                //Toast.makeText(getContext(), "Fecha de hoy: " + fechaHoyIn, Toast.LENGTH_LONG).show();
 
                                 if (miFechaIn3.equals(fechaHoyIn)) {
-                                    //Toast.makeText(getContext(), "Entró al IF entre fechas", Toast.LENGTH_LONG).show();
                                     incomdia += doc.getDouble("mPrecio");
                                 }
                                 incomes.setText(NumberFormat.getCurrencyInstance().format(incomdia));
                                 break;
                             case 2: // Monthly
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Incom.", Toast.LENGTH_LONG).show();
                                 incomes.setText(NumberFormat.getCurrencyInstance().format(incommes));
                                 break;
                             default:
@@ -208,23 +185,18 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 }
-                //Log.d(TAG, "Impresion de listaIcomes: " + listaIncomes + ". Total incomes: " + incom);
 
                 // Consulta de todos los Outcomes del usuario con ID = miUid
-                //List<Double> listaOutcomes = new ArrayList<>();
                 for (QueryDocumentSnapshot doc : value) {
                     if (doc.get("mPrecio") != null && doc.getString("mTipo").equals("0") && doc.get("mFechaMensual") == null) {
                         //listaOutcomes.add(doc.getDouble("mPrecio"));
                         outcom += doc.getDouble("mPrecio");
-                        //Log.d(TAG, "mTipo desde doc.get: " + doc.getString("mTipo") + ". Valor asociado: " + doc.getDouble("mPrecio") + ".");
 
                         switch (periodo) {
-                            case 0:
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Outcom.", Toast.LENGTH_LONG).show();
+                            case 0: // All
                                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcom));
                                 break;
-                            case 1:
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Outcom.", Toast.LENGTH_LONG).show();
+                            case 1: // Today
                                 Timestamp miFechaOut;
                                 Date miFechaOut2;
                                 DateFormat miFormatoOut = new SimpleDateFormat("dd/MM/yyyy");
@@ -236,20 +208,14 @@ public class HomeFragment extends Fragment {
                                     miFechaOut3 = miFormatoOut.format(miFechaOut2);
                                 }
 
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ", con fecha: " + miFechaOut3, Toast.LENGTH_LONG).show();
-                                //Log.d(TAG, "Caso: " + periodo + ", con fecha: " + miFechaOut3 + " de " + doc.get("mNombre"));
-
                                 String fechaHoyOut = miFormatoOut.format(new Date());
-                                //Toast.makeText(getContext(), "Fecha de hoy: " + fechaHoyOut, Toast.LENGTH_LONG).show();
 
                                 if (miFechaOut3.equals(fechaHoyOut)) {
-                                    //Toast.makeText(getContext(), "Entró al IF entre fechas", Toast.LENGTH_LONG).show();
                                     outcomdia += doc.getDouble("mPrecio");
                                 }
                                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcomdia));
                                 break;
-                            case 2:
-                                //Toast.makeText(getContext(), "Caso: " + periodo + ". Outcom.", Toast.LENGTH_LONG).show();
+                            case 2: // Monthly
                                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcommes));
                                 break;
                             default:
@@ -257,7 +223,6 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 }
-                //Log.d(TAG, "Impresion de listaOutcomes: " + listaOutcomes + ". Total outcomes: " + outcom);
                 balan = incom - outcom;
                 Log.d(TAG, "Balance total: " + balan + " Usuario: " + miUid + ". " + incom + ", " + outcom + ".");
 
@@ -288,7 +253,7 @@ public class HomeFragment extends Fragment {
                     incomes.setText(NumberFormat.getCurrencyInstance().format(incommes));
                 }
             } catch (Exception e) {
-                Toast.makeText(getContext(), "No hay incomes.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.msg_noincomes, Toast.LENGTH_SHORT).show();
             }
 
             //SQLiteDatabase db = conn.getReadableDatabase();
@@ -310,10 +275,11 @@ public class HomeFragment extends Fragment {
                     outcomes.setText(NumberFormat.getCurrencyInstance().format(outcommes));
                 }
             } catch (Exception e) {
-                Toast.makeText(getContext(), "No hay outcomes.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.msg_nooutcomes, Toast.LENGTH_SHORT).show();
             }
 
             balan = incom - outcom;
+
             // Llenado de Current Balance
             balance.setText(NumberFormat.getCurrencyInstance().format(balan));
             incom = 0; outcom = 0; balan = 0;
@@ -413,7 +379,7 @@ public class HomeFragment extends Fragment {
                 public void onEvent(@Nullable QuerySnapshot value,
                                     @Nullable FirebaseFirestoreException error) {
                     if (error != null) {
-                        Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(), R.string.msg_listenfailed, Toast.LENGTH_LONG).show();
                         Log.w(TAG, "Listen failed on Reminders with Firebase.", error);
                         return;
                     }
@@ -422,12 +388,10 @@ public class HomeFragment extends Fragment {
 
                     for (QueryDocumentSnapshot doc : value) {
                         if (doc.get("mPrecio") != null && doc.getString("mNombre") != null && doc.getString("mFrecuencia") != null && doc.get("mFechaMensual") != null) {
-                            //listaIncomes.add(doc.getDouble("mPrecio"));
-
                             reminders.add(new Reminder(doc.getString("mNombre"), NumberFormat.getCurrencyInstance().format(doc.getDouble("mPrecio"))));
-                            //Log.d(TAG, "mFrecuencia desde doc.get: " + doc.getString("mFrecuencia") + ". Valor asociado: " + doc.get("mPrecio") + ".");
                         }
                     }
+
                     // ArrayAdapter of remainders
                     ReminderAdapter remindersAdapter = new ReminderAdapter(getActivity(), reminders);
                     listReminderView.setAdapter(remindersAdapter);
@@ -443,7 +407,7 @@ public class HomeFragment extends Fragment {
                 }
                 //Log.d(TAG, "Reminders: " + reminders + ".");
             } catch (Exception e) {
-                Toast.makeText(getContext(), "No hay recordatorios.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.msg_noreminders, Toast.LENGTH_SHORT).show();
             }
 
             // ArrayAdapter of remainders
@@ -451,5 +415,4 @@ public class HomeFragment extends Fragment {
             listReminderView.setAdapter(remindersAdapter);
         }
     }
-
 }

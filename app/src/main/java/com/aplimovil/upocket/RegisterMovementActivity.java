@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import BD.ConexionSQLiteOpenHelper;
@@ -71,7 +69,7 @@ public class RegisterMovementActivity extends AppCompatActivity {
         frequently.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (frequently.isChecked() == true) {
+                if (frequently.isChecked()) {
                     boton_fecha.setVisibility(View.VISIBLE);
                     fecha.setVisibility(View.VISIBLE);
                     frecuencia.setVisibility(View.VISIBLE);
@@ -133,7 +131,6 @@ public class RegisterMovementActivity extends AppCompatActivity {
 
             // Se verifica si es frecuente o no. Si no es frecuente, la mFechaMensual es tipo null.
             if (fecha.length() > 1) {
-                //final String miFecha = fecha.getText().toString();
                 DateFormat miFormato = new SimpleDateFormat("dd/MM/yyyy");
                 Date miFecha = null;
                 try {
@@ -142,13 +139,10 @@ public class RegisterMovementActivity extends AppCompatActivity {
 
                 miMovimiento.put("mFechaMensual", miFecha);
                 miMovimiento.put("mFrecuencia", frecuencia.getText().toString()); // 0 Quincenal, 1 Mensual, 2 Anual.
-
-                //Toast.makeText(getApplicationContext(), "Fecha NO nula", Toast.LENGTH_LONG).show();
             }
             else {
                 miMovimiento.put("mFechaMensual", null);
                 miMovimiento.put("mFrecuencia", null);
-                //Toast.makeText(getApplicationContext(), "Fecha nula", Toast.LENGTH_LONG).show();
             }
 
             dbFirestore.collection("movimientos")
@@ -177,7 +171,8 @@ public class RegisterMovementActivity extends AppCompatActivity {
             values.put(UtilityMovement.DATE, fecha.getText().toString());
             values.put(UtilityMovement.FREQUENCY, frecuencia.getText().toString());
             Long idResultante = db.insert(UtilityMovement.TABLA_MOVEMENTS, UtilityMovement.ID, values);
-            Toast.makeText(this, R.string.msg_goodnewmovement + ". ID de Registro: " + idResultante, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.msg_goodnewmovement, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.msg_goodnewmovement + ". " + R.string.msg_asignedid + ": " + idResultante, Toast.LENGTH_LONG).show();
             db.close();
         }
     }

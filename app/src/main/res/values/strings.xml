@@ -61,4 +61,10 @@
     <string name="title_update">Update Goal</string>
     <string name="msg_goodnewgoal">New Goal successfully registered.</string>
     <string name="msg_badnewgoal">Failed to register a new goal. Try again.</string>
+    <string name="msg_noincomes">No have incomes on BD.</string>
+    <string name="msg_nooutcomes">No have outcomes on BD.</string>
+    <string name="msg_noreminders">No have reminders on BD.</string>
+    <string name="R.string.nogoals">No have goals on BD.</string>
+    <string name="msg_nomovements">No have movements on BD.</string>
+    <string name="msg_asignedid">Assigned ID</string>
 </resources>
