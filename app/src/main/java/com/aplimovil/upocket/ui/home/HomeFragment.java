@@ -45,12 +45,9 @@ import utilities.UtilityMovement;
 
 public class HomeFragment extends Fragment {
 
-    long date = System.currentTimeMillis();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String dateString = sdf.format(date);
-
     ArrayList<Reminder> reminders = new ArrayList<>();
     ConexionSQLiteOpenHelper conn;
+
     private int incom = 0;
     private int incomdia = 0;
     private int incommes = 0;
@@ -75,7 +72,7 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore dbFirestore;
 
     private static final String TAG = "DocSnippets";
-  
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -271,8 +268,7 @@ public class HomeFragment extends Fragment {
                 outcomdia = 0; outcommes = 0;
                 }
             });
-        }
-        else {
+        } else {
             SQLiteDatabase db = conn.getReadableDatabase();
             String[] campos = {UtilityMovement.PRECIO};
             try {
@@ -393,7 +389,7 @@ public class HomeFragment extends Fragment {
             }
             if (periodo == 0) {
                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcom));
-            } else if(periodo == 1) {
+            } else if (periodo == 1) {
                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcomdia));
             } else {
                 outcomes.setText(NumberFormat.getCurrencyInstance().format(outcommes));
